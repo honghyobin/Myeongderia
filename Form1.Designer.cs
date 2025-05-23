@@ -33,10 +33,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(552, 104);
+            button1.Location = new Point(199, 94);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
-            button1.Size = new Size(641, 44);
+            button1.Size = new Size(362, 44);
             button1.TabIndex = 0;
             button1.Text = "명데리아";
             button1.UseVisualStyleBackColor = true;
