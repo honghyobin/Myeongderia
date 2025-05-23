@@ -33,7 +33,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(408, 234);
+            button1.Location = new Point(431, 208);
             button1.Margin = new Padding(4, 4, 4, 4);
             button1.Name = "button1";
             button1.Size = new Size(96, 31);
@@ -48,7 +48,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1029, 600);
             Controls.Add(button1);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
