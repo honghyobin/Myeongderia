@@ -33,9 +33,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(38, 45);
+            button1.Location = new Point(440, 284);
+            button1.Margin = new Padding(6, 6, 6, 6);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(150, 49);
             button1.TabIndex = 0;
             button1.Text = "명데리아";
             button1.UseVisualStyleBackColor = true;
@@ -43,10 +44,11 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(14F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1600, 960);
             Controls.Add(button1);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
