@@ -33,22 +33,22 @@
             // 
             // button1
             // 
-            button1.Location = new Point(199, 94);
-            button1.Margin = new Padding(4);
+            button1.Location = new Point(310, 150);
+            button1.Margin = new Padding(6, 6, 6, 6);
             button1.Name = "button1";
-            button1.Size = new Size(362, 44);
+            button1.Size = new Size(563, 70);
             button1.TabIndex = 0;
-            button1.Text = "곽민서";
+            button1.Text = "김현우";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(14F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1029, 600);
+            ClientSize = new Size(1601, 960);
             Controls.Add(button1);
-            Margin = new Padding(4);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
