@@ -28,27 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            startButton = new Button();
+            storyButton = new Button();
             SuspendLayout();
             // 
-            // button1
+            // startButton
             // 
-            button1.Location = new Point(199, 94);
-            button1.Margin = new Padding(4);
-            button1.Name = "button1";
-            button1.Size = new Size(362, 44);
-            button1.TabIndex = 0;
-            button1.Text = "곽민서";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            startButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            startButton.Location = new Point(251, 230);
+            startButton.Name = "startButton";
+            startButton.Size = new Size(282, 48);
+            startButton.TabIndex = 0;
+            startButton.Text = "게임 시작";
+            startButton.UseVisualStyleBackColor = true;
+            startButton.Click += button1_Click;
+            // 
+            // storyButton
+            // 
+            storyButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            storyButton.Location = new Point(251, 302);
+            storyButton.Name = "storyButton";
+            storyButton.Size = new Size(282, 48);
+            storyButton.TabIndex = 1;
+            storyButton.Text = "스토리";
+            storyButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1029, 600);
-            Controls.Add(button1);
-            Margin = new Padding(4);
+            ClientSize = new Size(800, 450);
+            Controls.Add(storyButton);
+            Controls.Add(startButton);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -56,6 +67,7 @@
 
         #endregion
 
-        private Button button1;
+        private Button startButton;
+        private Button storyButton;
     }
 }
