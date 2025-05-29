@@ -34,6 +34,7 @@
             // 
             // startButton
             // 
+
             startButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
             startButton.Location = new Point(251, 230);
             startButton.Name = "startButton";
@@ -60,6 +61,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(storyButton);
             Controls.Add(startButton);
+
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
