@@ -41,6 +41,7 @@
             easyButton.TabIndex = 0;
             easyButton.Text = "Easy";
             easyButton.UseVisualStyleBackColor = true;
+            easyButton.Click += easyButton_Click;
             // 
             // hardButton
             // 

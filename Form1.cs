@@ -7,6 +7,7 @@ namespace Myeongderia
             InitializeComponent();
             //페이지를 화면 중앙에 배치
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(960, 640);//화면 크기 지정
         }
 
         private void button1_Click(object sender, EventArgs e)

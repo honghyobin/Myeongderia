@@ -29,39 +29,25 @@
         private void InitializeComponent()
         {
             startButton = new Button();
-            storyButton = new Button();
             SuspendLayout();
             // 
             // startButton
             // 
-
             startButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            startButton.Location = new Point(251, 230);
+            startButton.Location = new Point(256, 279);
             startButton.Name = "startButton";
-            startButton.Size = new Size(282, 48);
+            startButton.Size = new Size(282, 92);
             startButton.TabIndex = 0;
             startButton.Text = "게임 시작";
             startButton.UseVisualStyleBackColor = true;
             startButton.Click += button1_Click;
-            // 
-            // storyButton
-            // 
-            storyButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            storyButton.Location = new Point(251, 302);
-            storyButton.Name = "storyButton";
-            storyButton.Size = new Size(282, 48);
-            storyButton.TabIndex = 1;
-            storyButton.Text = "스토리";
-            storyButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(storyButton);
             Controls.Add(startButton);
-
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -70,6 +56,5 @@
         #endregion
 
         private Button startButton;
-        private Button storyButton;
     }
 }
