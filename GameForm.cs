@@ -40,11 +40,21 @@ namespace Myeongderia
             recipePictureBox.BringToFront();
             recipePictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
+            customerPictureBox = new PictureBox();
+            customerPictureBox.Location = new Point(420, 80);
+            customerPictureBox.Size = new Size(300, 300);
+            customerPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            customerPictureBox.BackColor = Color.Transparent;
+            Controls.Add(customerPictureBox);
+            customerPictureBox.BringToFront();
+
             InitOrders();
             SetRandomOrder();
             UpdateGoalLabel();
 
             SetupIngredientPanels();
+
+            orderLabel.BringToFront();
         }
 
         private void SetupIngredientPanels()
@@ -65,7 +75,6 @@ namespace Myeongderia
             panel.BackColor = Color.Transparent;
             panel.Cursor = Cursors.Hand;
 
-            // 클릭 보조용 투명 라벨 추가
             Label transparentLabel = new Label
             {
                 Dock = DockStyle.Fill,
@@ -115,6 +124,9 @@ namespace Myeongderia
             orderLabel.Text = $"주문: {string.Join(" → ", currentOrder)}";
             recipePictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"Recipe{index + 1}");
 
+            int personIndex = rand.Next(1, 8);
+            customerPictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"Person{personIndex}");
+
             userIngredients.Clear();
             popup?.ClearImages();
         }
@@ -147,6 +159,12 @@ namespace Myeongderia
 
             string filePath = imageToggleStates[key] ? @"Resources\\Bread1.png" : @"Resources\\Bread.png";
 
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show($"이미지 파일이 존재하지 않아요: {filePath}");
+                return;
+            }
+
             Image imgToShow = Image.FromFile(filePath);
             ShowPopupWithImage(imgToShow);
             userIngredients.Add("Bread");
@@ -158,53 +176,46 @@ namespace Myeongderia
             if (userIngredients.Count != currentOrder.Count)
             {
                 MessageBox.Show("재료 개수가 다릅니다!");
+                SetRandomOrder();
                 return;
             }
 
-            bool isMatch = true;
             for (int i = 0; i < currentOrder.Count; i++)
             {
                 if (userIngredients[i] != currentOrder[i])
                 {
-                    isMatch = false;
-                    break;
+                    MessageBox.Show($"순서가 다릅니다!\n{i + 1}번째 재료:\n[요청] {currentOrder[i]}\n[입력] {userIngredients[i]}");
+                    SetRandomOrder();
+                    return;
                 }
             }
 
-            if (isMatch)
+            int earned = 0;
+            foreach (var item in userIngredients)
             {
-                int earned = 0;
-                foreach (var item in userIngredients)
-                {
-                    if (ingredientPrices.ContainsKey(item))
-                        earned += ingredientPrices[item];
-                }
-                currentAmount += earned;
-
-                MessageBox.Show($"정답! 수익: +{earned}원");
-
-                if (currentAmount >= targetAmount)
-                {
-                    if (day < 3)
-                    {
-                        MessageBox.Show($"축하합니다! {day}일차 목표 달성! {day + 1}일차 시작!");
-                        day++;
-                        currentAmount = 0;
-                    }
-                    else
-                    {
-                        MessageBox.Show("축하합니다! 3일차까지 모두 완료했습니다!");
-                        this.Close();
-                    }
-                }
-
-                UpdateGoalLabel();
+                if (ingredientPrices.ContainsKey(item))
+                    earned += ingredientPrices[item];
             }
-            else
+            currentAmount += earned;
+
+            MessageBox.Show($"정답! 수익: +{earned}원");
+
+            if (currentAmount >= targetAmount)
             {
-                MessageBox.Show("틀렸습니다. 순서를 확인하세요.");
+                if (day < 3)
+                {
+                    MessageBox.Show($"축하합니다! {day}일차 목표 달성! {day + 1}일차 시작!");
+                    day++;
+                    currentAmount = 0;
+                }
+                else
+                {
+                    MessageBox.Show("축하합니다! 3일차까지 모두 완료했습니다!");
+                    this.Close();
+                }
             }
 
+            UpdateGoalLabel();
             SetRandomOrder();
         }
 
@@ -216,7 +227,5 @@ namespace Myeongderia
 
             goalLabel.Text = $"{day}일차\n목표 금액: {targetAmount}원\n현재 금액: {currentAmount}원";
         }
-
-
     }
 }
