@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-
-namespace Myeongderia
+﻿namespace Myeongderia
 {
     public partial class GameForm : Form
     {
@@ -30,6 +24,11 @@ namespace Myeongderia
         private int targetAmount = 30000;
         private int currentAmount = 0;
 
+        // 카운트다운 타이머 관련 필드
+        private System.Windows.Forms.Timer countdownTimer;
+        private int remainingSeconds = 300; //타이머 시간
+        private Label timerLabel;
+
         public GameForm()
         {
             InitializeComponent();
@@ -51,10 +50,52 @@ namespace Myeongderia
             InitOrders();
             SetRandomOrder();
             UpdateGoalLabel();
-
             SetupIngredientPanels();
 
             orderLabel.BringToFront();
+
+            // 타이머 초기화
+            SetupTimer();
+        }
+
+        private void SetupTimer() //타이머 디자인
+        {
+            timerLabel = new Label();
+            timerLabel.AutoSize = true;
+            timerLabel.Font = new Font("Arial", 16, FontStyle.Bold);
+            timerLabel.ForeColor = Color.White;
+            timerLabel.BackColor = Color.Transparent;
+            timerLabel.Location = new Point(20, 20);
+            timerLabel.Text = FormatTime(remainingSeconds);
+            timerLabel.BringToFront();
+            this.Controls.Add(timerLabel);
+
+            countdownTimer = new System.Windows.Forms.Timer();
+            countdownTimer.Interval = 1000;
+            countdownTimer.Tick += CountdownTimer_Tick;
+            countdownTimer.Start();
+        }
+
+        private void CountdownTimer_Tick(object sender, EventArgs e)
+        {
+            remainingSeconds--;
+            timerLabel.Text = FormatTime(remainingSeconds);
+
+            if (remainingSeconds <= 0)
+            {
+                countdownTimer.Stop();
+                MessageBox.Show("Game Over");
+                Form1 mainForm = new Form1();
+                mainForm.Show();
+                this.Close();
+            }
+        }
+
+        private string FormatTime(int totalSeconds)
+        {
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            return $"{minutes:D2}:{seconds:D2}";
         }
 
         private void SetupIngredientPanels()
