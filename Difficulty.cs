@@ -26,5 +26,10 @@ namespace Myeongderia
             this.Hide();
 
         }
+
+        private void hardButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

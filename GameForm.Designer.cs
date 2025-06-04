@@ -2,105 +2,101 @@
 {
     partial class GameForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            orderLabel = new Label();
+            recipePictureBox = new PictureBox();
+            goalLabel = new Label();
+            panelBread = new Panel();
+            panelPatty = new Panel();
+            panelOnion = new Panel();
+            panelCheese = new Panel();
+            panelTomato = new Panel();
+            panelLettuce = new Panel();
+            ((System.ComponentModel.ISupportInitialize)recipePictureBox).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // orderLabel
             // 
-            button1.BackgroundImage = Properties.Resources.Bread;
-            button1.Location = new Point(121, 430);
-            button1.Name = "button1";
-            button1.Size = new Size(125, 75);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            orderLabel.AutoSize = true;
+            orderLabel.Location = new Point(685, 329);
+            orderLabel.Name = "orderLabel";
+            orderLabel.Size = new Size(55, 15);
+            orderLabel.TabIndex = 3;
+            orderLabel.Text = "주문내역";
             // 
-            // button2
+            // recipePictureBox
             // 
-            button2.BackgroundImage = Properties.Resources.Patty;
-            button2.Location = new Point(263, 430);
-            button2.Name = "button2";
-            button2.Size = new Size(132, 75);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            recipePictureBox.BackColor = Color.Transparent;
+            recipePictureBox.Location = new Point(763, 247);
+            recipePictureBox.Name = "recipePictureBox";
+            recipePictureBox.Size = new Size(143, 82);
+            recipePictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            recipePictureBox.TabIndex = 1;
+            recipePictureBox.TabStop = false;
             // 
-            // button3
+            // goalLabel
             // 
-            button3.BackgroundImage = Properties.Resources.Onion;
-            button3.Location = new Point(401, 430);
-            button3.Name = "button3";
-            button3.Size = new Size(65, 75);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            goalLabel.AutoSize = true;
+            goalLabel.Font = new Font("맑은 고딕", 10F);
+            goalLabel.Location = new Point(30, 50);
+            goalLabel.Name = "goalLabel";
+            goalLabel.Size = new Size(103, 19);
+            goalLabel.TabIndex = 0;
+            goalLabel.Text = "목표 금액 표시";
             // 
-            // button4
+            // panelBread
             // 
-            button4.BackgroundImage = Properties.Resources.Cheese;
-            button4.Location = new Point(472, 430);
-            button4.Name = "button4";
-            button4.Size = new Size(66, 75);
-            button4.TabIndex = 3;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            panelBread.Location = new Point(122, 431);
+            panelBread.Name = "panelBread";
+            panelBread.Size = new Size(124, 78);
+            panelBread.TabIndex = 10;
             // 
-            // button5
+            // panelPatty
             // 
-            button5.BackgroundImage = Properties.Resources.Tomato;
-            button5.Location = new Point(559, 430);
-            button5.Name = "button5";
-            button5.Size = new Size(76, 75);
-            button5.TabIndex = 4;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            panelPatty.Location = new Point(262, 430);
+            panelPatty.Name = "panelPatty";
+            panelPatty.Size = new Size(124, 78);
+            panelPatty.TabIndex = 11;
             // 
-            // button6
+            // panelOnion
             // 
-            button6.BackgroundImage = Properties.Resources.Lettuce;
-            button6.Location = new Point(641, 430);
-            button6.Name = "button6";
-            button6.Size = new Size(93, 75);
-            button6.TabIndex = 5;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
+            panelOnion.Location = new Point(407, 433);
+            panelOnion.Name = "panelOnion";
+            panelOnion.Size = new Size(59, 75);
+            panelOnion.TabIndex = 12;
+            // 
+            // panelCheese
+            // 
+            panelCheese.Location = new Point(472, 433);
+            panelCheese.Name = "panelCheese";
+            panelCheese.Size = new Size(59, 75);
+            panelCheese.TabIndex = 13;
+            // 
+            // panelTomato
+            // 
+            panelTomato.Location = new Point(551, 433);
+            panelTomato.Name = "panelTomato";
+            panelTomato.Size = new Size(79, 72);
+            panelTomato.TabIndex = 14;
+            // 
+            // panelLettuce
+            // 
+            panelLettuce.Location = new Point(640, 430);
+            panelLettuce.Name = "panelLettuce";
+            panelLettuce.Size = new Size(83, 75);
+            panelLettuce.TabIndex = 15;
             // 
             // GameForm
             // 
@@ -109,24 +105,33 @@
             BackgroundImage = Properties.Resources.GameBackgroundImage;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(944, 601);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(panelLettuce);
+            Controls.Add(panelTomato);
+            Controls.Add(panelCheese);
+            Controls.Add(panelOnion);
+            Controls.Add(panelPatty);
+            Controls.Add(panelBread);
+            Controls.Add(goalLabel);
+            Controls.Add(recipePictureBox);
+            Controls.Add(orderLabel);
             Name = "GameForm";
             Text = "GameOder";
+            ((System.ComponentModel.ISupportInitialize)recipePictureBox).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Label orderLabel;
+        private Label goalLabel;          // ✅ 추가된 필드
+        private PictureBox recipePictureBox;
+        private Panel panelBread;
+        private Panel panelPatty;
+        private Panel panelOnion;
+        private Panel panelCheese;
+        private Panel panelTomato;
+        private Panel panelLettuce;
     }
+
 }
+

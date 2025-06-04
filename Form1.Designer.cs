@@ -34,7 +34,7 @@
             // startButton
             // 
             startButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            startButton.Location = new Point(256, 279);
+            startButton.Location = new Point(325, 322);
             startButton.Name = "startButton";
             startButton.Size = new Size(282, 92);
             startButton.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(944, 601);
             Controls.Add(startButton);
             Name = "Form1";
             Text = "Form1";

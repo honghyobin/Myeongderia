@@ -35,7 +35,7 @@
             // easyButton
             // 
             easyButton.Font = new Font("문체부 돋음체", 36F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            easyButton.Location = new Point(120, 169);
+            easyButton.Location = new Point(198, 294);
             easyButton.Name = "easyButton";
             easyButton.Size = new Size(236, 109);
             easyButton.TabIndex = 0;
@@ -46,18 +46,19 @@
             // hardButton
             // 
             hardButton.Font = new Font("문체부 돋음체", 36F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            hardButton.Location = new Point(440, 169);
+            hardButton.Location = new Point(518, 294);
             hardButton.Name = "hardButton";
             hardButton.Size = new Size(236, 109);
             hardButton.TabIndex = 1;
             hardButton.Text = "Hard";
             hardButton.UseVisualStyleBackColor = true;
+            hardButton.Click += hardButton_Click;
             // 
             // Difficulty
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(944, 601);
             Controls.Add(hardButton);
             Controls.Add(easyButton);
             Name = "Difficulty";
