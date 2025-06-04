@@ -26,7 +26,7 @@
 
         // 카운트다운 타이머 관련 필드
         private System.Windows.Forms.Timer countdownTimer;
-        private int remainingSeconds = 300; //타이머 시간
+        private int remainingSeconds = 180; //타이머 시간
         private Label timerLabel;
 
         public GameForm()
@@ -248,6 +248,12 @@
                     MessageBox.Show($"축하합니다! {day}일차 목표 달성! {day + 1}일차 시작!");
                     day++;
                     currentAmount = 0;
+
+                    // 타이머 초기화
+                    remainingSeconds = 180;
+                    timerLabel.Text = FormatTime(remainingSeconds);
+                    countdownTimer.Stop();
+                    countdownTimer.Start();
                 }
                 else
                 {
@@ -259,6 +265,7 @@
             UpdateGoalLabel();
             SetRandomOrder();
         }
+
 
         private void UpdateGoalLabel()
         {
