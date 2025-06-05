@@ -124,9 +124,6 @@
   <data name="Recipe8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Person3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Person3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Person4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Person4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,6 +132,9 @@
   </data>
   <data name="Recipe6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpeechBubble" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpeechBubble.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Recipe11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -150,6 +150,9 @@
   </data>
   <data name="Recipe1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Recipe14" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,6 +196,9 @@
   <data name="Recipe18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Person3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Person3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Bread" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bread.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -220,7 +226,7 @@
   <data name="Recipe4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recipe4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SpeechBubble" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SpeechBubble.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DifficultyBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DifficultyBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -65,7 +65,6 @@
             orderLabel.Size = new Size(69, 20);
             orderLabel.TabIndex = 1;
             orderLabel.Text = "주문내역";
-            orderLabel.Click += orderLabel_Click;
 
             // 
             // recipePictureBox

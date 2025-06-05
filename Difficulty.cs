@@ -34,5 +34,10 @@ namespace Myeongderia
             gameOderHard.Show();
             this.Hide();
         }
+
+        private void Difficulty_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

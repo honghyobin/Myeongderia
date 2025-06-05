@@ -33,19 +33,23 @@
             // 
             // startButton
             // 
-            startButton.Font = new Font("문체부 돋음체", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            startButton.Location = new Point(325, 322);
+            startButton.BackColor = Color.White;
+            startButton.Font = new Font("문체부 돋음체", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            startButton.ForeColor = Color.SeaGreen;
+            startButton.Location = new Point(349, 439);
             startButton.Name = "startButton";
-            startButton.Size = new Size(282, 92);
+            startButton.Size = new Size(282, 63);
             startButton.TabIndex = 0;
             startButton.Text = "게임 시작";
-            startButton.UseVisualStyleBackColor = true;
+            startButton.UseVisualStyleBackColor = false;
             startButton.Click += button1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.StartBackground;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(944, 601);
             Controls.Add(startButton);
             Name = "Form1";

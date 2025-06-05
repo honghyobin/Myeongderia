@@ -8,15 +8,19 @@ namespace Myeongderia
 {
     public partial class GameFormHard : Form
     {
-        private bool isPopupOpen = false;
+        //효빈:팝업창이 열려 있는지 확인하기 위한 변수
+        private bool isPopupOpen = false; 
         private PopupForm popup;
+        //효빈:빵의 윗면과 아랫면을 번갈아 추가할때 사용
         private Dictionary<string, bool> imageToggleStates = new Dictionary<string, bool>();
-
+        //효빈:모든 레시피 리스트
         private List<List<string>> allOrders = new List<List<string>>();
+        //효빈: 현재 주문된 레시피 리스트
         private List<string> currentOrder = new List<string>();
+        //효빈:플레이어가 현재 선택한 재료 리스트
         private List<string> userIngredients = new List<string>();
-
-        private List<string> orderSentences = new List<string>
+        //효빈:하드모드 문장 주문 목록
+        private List<string> orderSentences = new List<string> 
         {
             "고기만 끼운 기본 버거 부탁해!",
             "그 노란 거만 넣어줘.",
@@ -41,7 +45,7 @@ namespace Myeongderia
         };
 
         private Dictionary<string, int> ingredientPrices = new Dictionary<string, int>
-        {
+        {   //효빈:재료 가격 목록
             { "Bread", 600 },
             { "Lettuce", 700 },
             { "Patty", 1500 },
@@ -49,7 +53,7 @@ namespace Myeongderia
             { "Cheese", 500 },
             { "Onion", 1000 }
         };
-
+        //효빈:초기 게임 날짜, 목표 금액, 현재 금액
         private int day = 1;
         private int targetAmount = 30000;
         private int currentAmount = 0;
@@ -59,13 +63,14 @@ namespace Myeongderia
         private int remainingSeconds = 180; 
         private Label timerLabel;
 
+        //효빈:게임 초기설정
         public GameFormHard()
         {
             InitializeComponent();
-            this.Size = new Size(960, 640);
+            this.Size = new Size(960, 640);//효빈:화면의 크기 설정
 
-            recipePictureBox.Visible = false;
-
+            recipePictureBox.Visible = false; //효빈:하드모드에서 이미지 레시피 안 보임
+            //효빈:손님 이미지박스 생성하고 위치, 사이즈, 투명배경 설정
             customerPictureBox = new PictureBox
             {
                 Location = new Point(420, 80),
@@ -75,10 +80,10 @@ namespace Myeongderia
             };
             Controls.Add(customerPictureBox);
             customerPictureBox.BringToFront();
-
+            //효빈:말풍선, 주문라벨 앞으로 위치
             balloonPictureBox.BringToFront();
             orderLabel.BringToFront();
-
+            //효빈: 레시피 목록 초기화, 첫 주문 설정, 목표금액 초기화, 재료 패널 설정
             InitOrders();
             SetRandomOrder();
             UpdateGoalLabel();
@@ -131,7 +136,7 @@ namespace Myeongderia
             return $"{minutes:D2}:{seconds:D2}";
         }
 
-
+        //효빈:재료 패널을 버튼처럼 사용
         private void SetupIngredientPanels()
         {
             panelBread = CreateIngredientPanel(new Point(122, 431), new Size(124, 78), (s, e) => ToggleBread());
@@ -141,7 +146,7 @@ namespace Myeongderia
             panelTomato = CreateIngredientPanel(new Point(551, 433), new Size(79, 72), (s, e) => AddIngredient("Tomato", Properties.Resources.Tomato));
             panelLettuce = CreateIngredientPanel(new Point(640, 430), new Size(83, 75), (s, e) => AddIngredient("Lettuce", Properties.Resources.Lettuce));
         }
-
+        //효빈:재료 선택 패널을 생성하고 클릭 이벤트를 연결하는 함수
         private Panel CreateIngredientPanel(Point location, Size size, EventHandler clickHandler)
         {
             Panel panel = new Panel
@@ -164,7 +169,7 @@ namespace Myeongderia
             panel.BringToFront();
             return panel;
         }
-
+        //효빈:전체 주문 레시피 
         private void InitOrders()
         {
             allOrders = new List<List<string>>
@@ -191,18 +196,18 @@ namespace Myeongderia
                 new List<string> { "Bread", "Lettuce", "Cheese", "Onion", "Tomato", "Patty", "Bread" }
             };
         }
-
+        //효빈:랜덤으로 주문 레시피와 문장을 화면에 출력하는 함수
         private void SetRandomOrder()
         {
             Random rand = new Random();
-            int index = rand.Next(allOrders.Count);
-            currentOrder = allOrders[index];
+            int index = rand.Next(allOrders.Count);//효빈: 전체 주문 중 랜덤으로 선택
+            currentOrder = allOrders[index];//효빈:선택한 주문을 현재 주문에 넣기
 
-            orderLabel.Text = $"“{orderSentences[index]}”";
+            orderLabel.Text = $"“{orderSentences[index]}”";//효빈:인데스의 문장을 주문 라벨에 출력
 
-            int personIndex = rand.Next(1, 8);
+            int personIndex = rand.Next(1, 8);//효빈:손님 이미지 랜덤 선택
             customerPictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"Person{personIndex}");
-
+            //효빈:어린 손님(Person3, Person4)이 출력 되면 말풍선과 주문라벨으 아래로 이동
             if (personIndex == 3 || personIndex == 4)
             {
                 balloonPictureBox.Location = new Point(balloonPictureBox.Location.X, 190);
@@ -214,43 +219,43 @@ namespace Myeongderia
                 orderLabel.Location = new Point(orderLabel.Location.X, 120);
             }
 
-            userIngredients.Clear();
-            popup?.ClearImages();
+            userIngredients.Clear();//효빈:재료 초기화
+            popup?.ClearImages();//효빈:팝업창에 생긴 이미지 초기화
         }
-
+        //효빈:재료 이미지 클릭 시 팝업창을 띄우는 함수
         private void ShowPopupWithImage(Image img)
         {
             if (!isPopupOpen)
             {
                 popup = new PopupForm();
-                popup.StartPosition = FormStartPosition.CenterParent;
-                popup.OnComplete = CheckBurger;
-                popup.FormClosed += (s, e) => { isPopupOpen = false; };
+                popup.StartPosition = FormStartPosition.CenterParent;//효빈:중앙에 위치
+                popup.OnComplete = CheckBurger;//효빈:완료 시 햄버거 레시피 정답 검사
+                popup.FormClosed += (s, e) => { isPopupOpen = false; };//팝업창이 종료되면 상태 변경
                 isPopupOpen = true;
                 popup.Show();
             }
-            popup.AddImage(img);
+            popup.AddImage(img);//팝업창에 이미지 추가
         }
-
+        //효빈:재료를 클릭하면 재료명, 이미지 전달 함수
         private void AddIngredient(string name, Image img)
         {
-            ShowPopupWithImage(img);
-            userIngredients.Add(name);
+            ShowPopupWithImage(img);//효빈:이미지 팝업에 추가
+            userIngredients.Add(name);//효빈:재료 목록에 추가
         }
-
+        //효빈: 빵 추가할 때 빵의 윗면과 아랫면을 구별하기 위한 함수
         private void ToggleBread()
         {
             string key = "Bread";
             if (!imageToggleStates.ContainsKey(key))
-                imageToggleStates[key] = false;
-
+                imageToggleStates[key] = false;//효빈:빵 상태 초기화
+            //효빈:번갈아가며 이미지 출력
             string filePath = imageToggleStates[key] ? @"Resources\\Bread1.png" : @"Resources\\Bread.png";
             Image imgToShow = Image.FromFile(filePath);
             ShowPopupWithImage(imgToShow);
             userIngredients.Add("Bread");
-            imageToggleStates[key] = !imageToggleStates[key];
+            imageToggleStates[key] = !imageToggleStates[key];//효빈:상태 변경
         }
-
+        //효빈: 플레이어가 만든 버거 레시피와 비교하는 함수
         private void CheckBurger()
         {
             if (userIngredients.Count != currentOrder.Count)
@@ -279,12 +284,11 @@ namespace Myeongderia
 
             currentAmount += earned;
             MessageBox.Show($"정답! 수익: +{earned}원");
-
+            //효빈:목표 달성 시 다음 날로 진행, 3일차가 끝나면 게임 종료
             if (currentAmount >= targetAmount)
             {
                 if (day < 3)
                 {
-                    //타이머 재설정
                     MessageBox.Show($"축하합니다! {day}일차 목표 달성! {day + 1}일차 시작!");
                     day++;
                     currentAmount = 0;
@@ -303,17 +307,15 @@ namespace Myeongderia
             UpdateGoalLabel();
             SetRandomOrder();
         }
-
+        //효빈: 현재 게임 일차와 금액을 목표에 맞게 라벨에 표시하는 함수
         private void UpdateGoalLabel()
         {
             if (day == 1) targetAmount = 30000;
-            else if (day == 2) targetAmount = 50000;
-            else if (day == 3) targetAmount = 80000;
+            else if (day == 2) targetAmount = 40000;
+            else if (day == 3) targetAmount = 60000;
 
             goalLabel.Text = $"{day}일차\n목표 금액: {targetAmount}원\n현재 금액: {currentAmount}원";
         }
 
-        private void orderLabel_Click(object sender, EventArgs e) { }
-        private void balloonPictureBox_Click(object sender, EventArgs e) { }
     }
 }

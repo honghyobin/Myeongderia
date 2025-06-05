@@ -83,6 +83,16 @@ namespace Myeongderia.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap DifficultyBackground {
+            get {
+                object obj = ResourceManager.GetObject("DifficultyBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap GameBackgroundImage {
             get {
                 object obj = ResourceManager.GetObject("GameBackgroundImage", resourceCulture);
@@ -396,6 +406,16 @@ namespace Myeongderia.Properties {
         internal static System.Drawing.Bitmap SpeechBubble {
             get {
                 object obj = ResourceManager.GetObject("SpeechBubble", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartBackground {
+            get {
+                object obj = ResourceManager.GetObject("StartBackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
