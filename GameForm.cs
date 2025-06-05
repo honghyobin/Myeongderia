@@ -24,9 +24,9 @@
         private int targetAmount = 30000;
         private int currentAmount = 0;
 
-        // 카운트다운 타이머 관련 필드
+        // 현우:카운트 다운 관련
         private System.Windows.Forms.Timer countdownTimer;
-        private int remainingSeconds = 180; //타이머 시간
+        private int remainingSeconds = 180;
         private Label timerLabel;
 
         public GameForm()
@@ -54,11 +54,11 @@
 
             orderLabel.BringToFront();
 
-            // 타이머 초기화
+            // 현우: 타이머 초기화
             SetupTimer();
         }
 
-        private void SetupTimer() //타이머 디자인
+        private void SetupTimer() //현우: 타이머 설정
         {
             timerLabel = new Label();
             timerLabel.AutoSize = true;
@@ -76,6 +76,7 @@
             countdownTimer.Start();
         }
 
+        // 현우: 타이머 이벤트
         private void CountdownTimer_Tick(object sender, EventArgs e)
         {
             remainingSeconds--;
@@ -182,6 +183,7 @@
             userIngredients.Clear();
             popup?.ClearImages();
             balloonPictureBox.BringToFront();
+            orderLabel.BringToFront();
         }
 
         private void ShowPopupWithImage(Image img)
@@ -261,7 +263,7 @@
                     day++;
                     currentAmount = 0;
 
-                    // 타이머 초기화
+                    // 현우 타이머 초기화
                     remainingSeconds = 180;
                     timerLabel.Text = FormatTime(remainingSeconds);
                     countdownTimer.Stop();

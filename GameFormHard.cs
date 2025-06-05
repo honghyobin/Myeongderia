@@ -54,6 +54,11 @@ namespace Myeongderia
         private int targetAmount = 30000;
         private int currentAmount = 0;
 
+        //카운트 다운 관련
+        private System.Windows.Forms.Timer countdownTimer;
+        private int remainingSeconds = 180; 
+        private Label timerLabel;
+
         public GameFormHard()
         {
             InitializeComponent();
@@ -61,7 +66,6 @@ namespace Myeongderia
 
             recipePictureBox.Visible = false;
 
-            // 손님 박스 셋업
             customerPictureBox = new PictureBox
             {
                 Location = new Point(420, 80),
@@ -79,7 +83,54 @@ namespace Myeongderia
             SetRandomOrder();
             UpdateGoalLabel();
             SetupIngredientPanels();
+
+            // 현우: 타이머 리셋
+            SetupTimer();
         }
+
+        //현우: 타이머 디자인 및 기능
+        private void SetupTimer()
+        {
+            timerLabel = new Label();
+            timerLabel.AutoSize = true;
+            timerLabel.Font = new Font("Arial", 16, FontStyle.Bold);
+            timerLabel.ForeColor = Color.White;
+            timerLabel.BackColor = Color.Transparent;
+            timerLabel.Location = new Point(20, 20); // 좌측 상단
+            timerLabel.Text = FormatTime(remainingSeconds);
+            timerLabel.BringToFront();
+            this.Controls.Add(timerLabel);
+
+            countdownTimer = new System.Windows.Forms.Timer();
+            countdownTimer.Interval = 1000;
+            countdownTimer.Tick += CountdownTimer_Tick;
+            countdownTimer.Start();
+        }
+
+        private void CountdownTimer_Tick(object sender, EventArgs e)
+        {
+            remainingSeconds--;
+            timerLabel.Text = FormatTime(remainingSeconds);
+
+            if (remainingSeconds <= 0)
+            {
+                countdownTimer.Stop();
+                MessageBox.Show("Game Over");
+
+                Form1 mainForm = new Form1();
+                mainForm.Show();
+
+                this.Close(); // 현재 게임 폼 닫기
+            }
+        }
+
+        private string FormatTime(int totalSeconds)
+        {
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            return $"{minutes:D2}:{seconds:D2}";
+        }
+
 
         private void SetupIngredientPanels()
         {
@@ -194,7 +245,6 @@ namespace Myeongderia
                 imageToggleStates[key] = false;
 
             string filePath = imageToggleStates[key] ? @"Resources\\Bread1.png" : @"Resources\\Bread.png";
-
             Image imgToShow = Image.FromFile(filePath);
             ShowPopupWithImage(imgToShow);
             userIngredients.Add("Bread");
@@ -234,12 +284,17 @@ namespace Myeongderia
             {
                 if (day < 3)
                 {
+                    //타이머 재설정
                     MessageBox.Show($"축하합니다! {day}일차 목표 달성! {day + 1}일차 시작!");
                     day++;
                     currentAmount = 0;
+                    remainingSeconds = 180;
+                    timerLabel.Text = FormatTime(remainingSeconds);
+                    countdownTimer.Start();
                 }
                 else
                 {
+                    countdownTimer.Stop();
                     MessageBox.Show("축하합니다! 3일차까지 모두 완료했습니다!");
                     this.Close();
                 }
@@ -259,7 +314,6 @@ namespace Myeongderia
         }
 
         private void orderLabel_Click(object sender, EventArgs e) { }
-
         private void balloonPictureBox_Click(object sender, EventArgs e) { }
     }
 }
