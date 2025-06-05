@@ -1,6 +1,12 @@
-﻿namespace Myeongderia
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+
+namespace Myeongderia
 {
-    public partial class GameForm : Form
+    public partial class GameFormHard : Form
     {
         private bool isPopupOpen = false;
         private PopupForm popup;
@@ -9,6 +15,30 @@
         private List<List<string>> allOrders = new List<List<string>>();
         private List<string> currentOrder = new List<string>();
         private List<string> userIngredients = new List<string>();
+
+        private List<string> orderSentences = new List<string>
+        {
+            "고기만 끼운 기본 버거 부탁해!",
+            "그 노란 거만 넣어줘.",
+            "풀 위에 빨간 거, 그리고 빵.",
+            "고기 위에 치즈 얹어서 빵으로 덮어줘.",
+            "눈물 나는 채소랑 잎사귀만 넣은 거 줘.",
+            "고기, 빨간 거, 노란 거, 순서대로 넣어줘!",
+            "잎사귀에 치즈, 그 위에 토마토 부탁해~",
+            "고기 두 장! 치즈도 꼭 넣어줘!",
+            "빨간 거에 노란 거, 고기 얹고 마무리해줘.",
+            "풀 - 고기 - 치즈 순서로 부탁해~",
+            "치즈랑 풀, 그 위에 고기, 양파도 살짝~",
+            "고기 치즈 양파 토마토, 다 넣어줘!",
+            "풀에 토마토, 그리고 고기랑 치즈!",
+            "치즈 → 고기 → 치즈 더! 양파도 얹어줘~",
+            "양파, 고기, 토마토, 치즈. 딱 그 순서야.",
+            "고기에 토마토랑 치즈, 풀도 얹어서 줘.",
+            "풀 → 토마토 → 양파 → 고기 → 치즈!",
+            "치즈 → 양파 → 고기 → 풀 → 토마토~",
+            "고기 두 장에 치즈, 풀, 양파까지 넣어줘!",
+            "풀, 치즈, 양파, 토마토, 그리고 마지막엔 고기!"
+        };
 
         private Dictionary<string, int> ingredientPrices = new Dictionary<string, int>
         {
@@ -24,78 +54,31 @@
         private int targetAmount = 30000;
         private int currentAmount = 0;
 
-        // 카운트다운 타이머 관련 필드
-        private System.Windows.Forms.Timer countdownTimer;
-        private int remainingSeconds = 180; //타이머 시간
-        private Label timerLabel;
-
-        public GameForm()
+        public GameFormHard()
         {
             InitializeComponent();
             this.Size = new Size(960, 640);
 
-            recipePictureBox.BackColor = Color.Transparent;
-            recipePictureBox.Parent = this;
-            recipePictureBox.BringToFront();
-            recipePictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            recipePictureBox.Visible = false;
 
-            customerPictureBox = new PictureBox();
-            customerPictureBox.Location = new Point(420, 80);
-            customerPictureBox.Size = new Size(300, 300);
-            customerPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            customerPictureBox.BackColor = Color.Transparent;
+            // 손님 박스 셋업
+            customerPictureBox = new PictureBox
+            {
+                Location = new Point(420, 80),
+                Size = new Size(300, 300),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.Transparent
+            };
             Controls.Add(customerPictureBox);
             customerPictureBox.BringToFront();
+
+            balloonPictureBox.BringToFront();
+            orderLabel.BringToFront();
 
             InitOrders();
             SetRandomOrder();
             UpdateGoalLabel();
             SetupIngredientPanels();
-
-            orderLabel.BringToFront();
-
-            // 타이머 초기화
-            SetupTimer();
-        }
-
-        private void SetupTimer() //타이머 디자인
-        {
-            timerLabel = new Label();
-            timerLabel.AutoSize = true;
-            timerLabel.Font = new Font("Arial", 16, FontStyle.Bold);
-            timerLabel.ForeColor = Color.White;
-            timerLabel.BackColor = Color.Transparent;
-            timerLabel.Location = new Point(20, 20);
-            timerLabel.Text = FormatTime(remainingSeconds);
-            timerLabel.BringToFront();
-            this.Controls.Add(timerLabel);
-
-            countdownTimer = new System.Windows.Forms.Timer();
-            countdownTimer.Interval = 1000;
-            countdownTimer.Tick += CountdownTimer_Tick;
-            countdownTimer.Start();
-        }
-
-        private void CountdownTimer_Tick(object sender, EventArgs e)
-        {
-            remainingSeconds--;
-            timerLabel.Text = FormatTime(remainingSeconds);
-
-            if (remainingSeconds <= 0)
-            {
-                countdownTimer.Stop();
-                MessageBox.Show("Game Over");
-                Form1 mainForm = new Form1();
-                mainForm.Show();
-                this.Close();
-            }
-        }
-
-        private string FormatTime(int totalSeconds)
-        {
-            int minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
-            return $"{minutes:D2}:{seconds:D2}";
         }
 
         private void SetupIngredientPanels()
@@ -110,11 +93,13 @@
 
         private Panel CreateIngredientPanel(Point location, Size size, EventHandler clickHandler)
         {
-            Panel panel = new Panel();
-            panel.Location = location;
-            panel.Size = size;
-            panel.BackColor = Color.Transparent;
-            panel.Cursor = Cursors.Hand;
+            Panel panel = new Panel
+            {
+                Location = location,
+                Size = size,
+                BackColor = Color.Transparent,
+                Cursor = Cursors.Hand
+            };
 
             Label transparentLabel = new Label
             {
@@ -124,7 +109,7 @@
             transparentLabel.Click += clickHandler;
             panel.Controls.Add(transparentLabel);
 
-            this.Controls.Add(panel);
+            Controls.Add(panel);
             panel.BringToFront();
             return panel;
         }
@@ -162,8 +147,7 @@
             int index = rand.Next(allOrders.Count);
             currentOrder = allOrders[index];
 
-            orderLabel.Text = $"{string.Join(" → ", currentOrder)}";
-            recipePictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"Recipe{index + 1}");
+            orderLabel.Text = $"“{orderSentences[index]}”";
 
             int personIndex = rand.Next(1, 8);
             customerPictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject($"Person{personIndex}");
@@ -181,7 +165,6 @@
 
             userIngredients.Clear();
             popup?.ClearImages();
-            balloonPictureBox.BringToFront();
         }
 
         private void ShowPopupWithImage(Image img)
@@ -212,12 +195,6 @@
 
             string filePath = imageToggleStates[key] ? @"Resources\\Bread1.png" : @"Resources\\Bread.png";
 
-            if (!File.Exists(filePath))
-            {
-                MessageBox.Show($"이미지 파일이 존재하지 않아요: {filePath}");
-                return;
-            }
-
             Image imgToShow = Image.FromFile(filePath);
             ShowPopupWithImage(imgToShow);
             userIngredients.Add("Bread");
@@ -237,7 +214,7 @@
             {
                 if (userIngredients[i] != currentOrder[i])
                 {
-                    MessageBox.Show($"순서가 다릅니다!\n{i + 1}번째 재료:\n[요청] {currentOrder[i]}\n[입력] {userIngredients[i]}");
+                    MessageBox.Show($"순서가 다릅니다!");
                     SetRandomOrder();
                     return;
                 }
@@ -249,8 +226,8 @@
                 if (ingredientPrices.ContainsKey(item))
                     earned += ingredientPrices[item];
             }
-            currentAmount += earned;
 
+            currentAmount += earned;
             MessageBox.Show($"정답! 수익: +{earned}원");
 
             if (currentAmount >= targetAmount)
@@ -260,12 +237,6 @@
                     MessageBox.Show($"축하합니다! {day}일차 목표 달성! {day + 1}일차 시작!");
                     day++;
                     currentAmount = 0;
-
-                    // 타이머 초기화
-                    remainingSeconds = 180;
-                    timerLabel.Text = FormatTime(remainingSeconds);
-                    countdownTimer.Stop();
-                    countdownTimer.Start();
                 }
                 else
                 {
@@ -278,7 +249,6 @@
             SetRandomOrder();
         }
 
-
         private void UpdateGoalLabel()
         {
             if (day == 1) targetAmount = 30000;
@@ -288,6 +258,8 @@
             goalLabel.Text = $"{day}일차\n목표 금액: {targetAmount}원\n현재 금액: {currentAmount}원";
         }
 
+        private void orderLabel_Click(object sender, EventArgs e) { }
 
+        private void balloonPictureBox_Click(object sender, EventArgs e) { }
     }
 }

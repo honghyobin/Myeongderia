@@ -29,7 +29,10 @@ namespace Myeongderia
 
         private void hardButton_Click(object sender, EventArgs e)
         {
-
+            GameFormHard gameOderHard = new GameFormHard();
+            gameOderHard.StartPosition = FormStartPosition.CenterScreen;
+            gameOderHard.Show();
+            this.Hide();
         }
     }
 }
