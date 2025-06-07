@@ -28,33 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            easyButton = new Button();
-            hardButton = new Button();
+            easyButton = new PictureBox();
+            hardButton = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)easyButton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)hardButton).BeginInit();
             SuspendLayout();
             // 
             // easyButton
             // 
-            easyButton.Font = new Font("문체부 돋음체", 36F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            easyButton.ForeColor = Color.DodgerBlue;
-            easyButton.Location = new Point(194, 445);
+            easyButton.BackColor = Color.Transparent;
+            easyButton.BackgroundImage = Properties.Resources.easyBtn;
+            easyButton.BackgroundImageLayout = ImageLayout.Stretch;
+            easyButton.Location = new Point(182, 435);
             easyButton.Name = "easyButton";
-            easyButton.Size = new Size(236, 69);
-            easyButton.TabIndex = 0;
-            easyButton.Text = "Easy";
-            easyButton.UseVisualStyleBackColor = true;
-            easyButton.Click += easyButton_Click;
+            easyButton.Size = new Size(185, 104);
+            easyButton.TabIndex = 2;
+            easyButton.TabStop = false;
+            easyButton.Click += pictureBox1_Click;
             // 
             // hardButton
             // 
-            hardButton.Font = new Font("문체부 돋음체", 36F, FontStyle.Regular, GraphicsUnit.Point, 129);
-            hardButton.ForeColor = Color.Firebrick;
-            hardButton.Location = new Point(522, 445);
+            hardButton.BackColor = Color.Transparent;
+            hardButton.BackgroundImage = Properties.Resources.hardBtn;
+            hardButton.BackgroundImageLayout = ImageLayout.Stretch;
+            hardButton.Location = new Point(542, 435);
             hardButton.Name = "hardButton";
-            hardButton.Size = new Size(236, 69);
-            hardButton.TabIndex = 1;
-            hardButton.Text = "Hard";
-            hardButton.UseVisualStyleBackColor = true;
-            hardButton.Click += hardButton_Click;
+            hardButton.Size = new Size(185, 104);
+            hardButton.TabIndex = 3;
+            hardButton.TabStop = false;
+            hardButton.Click += hardButton_Click_1;
             // 
             // Difficulty
             // 
@@ -68,12 +70,14 @@
             Name = "Difficulty";
             Text = "Difficulty";
             Load += Difficulty_Load;
+            ((System.ComponentModel.ISupportInitialize)easyButton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)hardButton).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button easyButton;
-        private Button hardButton;
+        private PictureBox easyButton;
+        private PictureBox hardButton;
     }
 }

@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            startButton = new Button();
+            startButton = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)startButton).BeginInit();
             SuspendLayout();
             // 
             // startButton
             // 
-            startButton.BackColor = Color.White;
-            startButton.Font = new Font("문체부 돋음체", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            startButton.ForeColor = Color.SeaGreen;
-            startButton.Location = new Point(349, 439);
+            startButton.BackColor = Color.Transparent;
+            startButton.BackgroundImage = Properties.Resources.startBtn;
+            startButton.BackgroundImageLayout = ImageLayout.Stretch;
+            startButton.Location = new Point(346, 438);
             startButton.Name = "startButton";
-            startButton.Size = new Size(282, 63);
-            startButton.TabIndex = 0;
-            startButton.Text = "게임 시작";
-            startButton.UseVisualStyleBackColor = false;
-            startButton.Click += button1_Click;
+            startButton.Size = new Size(253, 119);
+            startButton.TabIndex = 1;
+            startButton.TabStop = false;
+            startButton.Click += startButton_Click;
             // 
             // Form1
             // 
@@ -54,11 +54,12 @@
             Controls.Add(startButton);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)startButton).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button startButton;
+        private PictureBox pictureBox1;
+        private PictureBox startButton;
     }
 }
