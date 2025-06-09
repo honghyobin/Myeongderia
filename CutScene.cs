@@ -68,9 +68,10 @@ namespace Myeongderia
         {
             try
             {
+                string bgmPath = Path.Combine(Application.StartupPath, "Resources", "BurgerBeat.mp3");
                 bgmPlayer = new WindowsMediaPlayer();
-                bgmPlayer.URL = "Resources\\BurgerBeat.mp3";
-                bgmPlayer.settings.setMode("loop", true); // 반복 재생 설정
+                bgmPlayer.URL = bgmPath;
+                bgmPlayer.settings.setMode("loop", true);
                 bgmPlayer.controls.play();
             }
             catch (Exception ex)
