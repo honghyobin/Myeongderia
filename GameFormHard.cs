@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Myeongderia
@@ -63,11 +64,31 @@ namespace Myeongderia
         private int remainingSeconds = 180; 
         private Label timerLabel;
 
+        //  효과음 재생기
+        private SoundPlayer effectPlayer;
+        private SoundPlayer failPlayer; // 실패 효과음 플레이어 추가
+
+
+
         //효빈:게임 초기설정
         public GameFormHard()
         {
             InitializeComponent();
             this.Size = new Size(960, 640);//효빈:화면의 크기 설정
+                                           // 효과음 초기화 (리소스 사용)
+            try
+            {
+                effectPlayer = new SoundPlayer(Properties.Resources.ding);
+                effectPlayer.Load();
+
+                failPlayer = new SoundPlayer(Properties.Resources.fail); // 리소스에서 fail.wav 로드
+                failPlayer.Load();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("효과음 로드 실패: " + ex.Message);
+            }
+    
 
             recipePictureBox.Visible = false; //효빈:하드모드에서 이미지 레시피 안 보임
             //효빈:손님 이미지박스 생성하고 위치, 사이즈, 투명배경 설정
@@ -120,12 +141,12 @@ namespace Myeongderia
             if (remainingSeconds <= 0)
             {
                 countdownTimer.Stop();
+                failPlayer?.Play(); // 실패 음향 재생
                 MessageBox.Show("Game Over");
 
                 Form1 mainForm = new Form1();
                 mainForm.Show();
-
-                this.Close(); // 현재 게임 폼 닫기
+                this.Close();
             }
         }
 
@@ -239,21 +260,30 @@ namespace Myeongderia
         //효빈:재료를 클릭하면 재료명, 이미지 전달 함수
         private void AddIngredient(string name, Image img)
         {
+            effectPlayer?.Play();
             ShowPopupWithImage(img);//효빈:이미지 팝업에 추가
             userIngredients.Add(name);//효빈:재료 목록에 추가
         }
         //효빈: 빵 추가할 때 빵의 윗면과 아랫면을 구별하기 위한 함수
+
+
+
         private void ToggleBread()
         {
             string key = "Bread";
             if (!imageToggleStates.ContainsKey(key))
-                imageToggleStates[key] = false;//효빈:빵 상태 초기화
-            //효빈:번갈아가며 이미지 출력
-            string filePath = imageToggleStates[key] ? @"Resources\\Bread1.png" : @"Resources\\Bread.png";
-            Image imgToShow = Image.FromFile(filePath);
+                imageToggleStates[key] = false;
+
+            // 이미지 리소스에서 선택
+            Image imgToShow = imageToggleStates[key]
+                ? Properties.Resources.Bread1
+                : Properties.Resources.Bread;
+
+            effectPlayer?.Play();
             ShowPopupWithImage(imgToShow);
             userIngredients.Add("Bread");
-            imageToggleStates[key] = !imageToggleStates[key];//효빈:상태 변경
+
+            imageToggleStates[key] = !imageToggleStates[key];
         }
         //효빈: 플레이어가 만든 버거 레시피와 비교하는 함수
         private void CheckBurger()

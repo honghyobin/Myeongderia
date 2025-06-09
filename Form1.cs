@@ -1,20 +1,20 @@
-namespace Myeongderia
+  namespace Myeongderia
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
-            //ÆäÀÌÁö¸¦ È­¸é Áß¾Ó¿¡ ¹èÄ¡
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ß¾Ó¿ï¿½ ï¿½ï¿½Ä¡
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Size = new Size(960, 640);//È­¸é Å©±â ÁöÁ¤
+            this.Size = new Size(960, 640);//È­ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            //½ÃÀÛÇÏ±â ¹öÆ° Å¬¸¯½Ã ÄÆ¾À È­¸éÀ¸·Î ÀÌµ¿
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¾ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             CutScene cutscene= new CutScene();
-            //ÆäÀÌÁö¸¦ È­¸é Áß¾Ó¿¡ ¹èÄ¡
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ß¾Ó¿ï¿½ ï¿½ï¿½Ä¡
             cutscene.StartPosition = FormStartPosition.CenterScreen;
             cutscene.Show();
             this.Hide();

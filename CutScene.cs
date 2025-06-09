@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using WMPLib; // Windows Media Player 참조 필요 (프로젝트에 COM -> Windows Media Player 추가)
 
 namespace Myeongderia
 {
@@ -10,6 +11,8 @@ namespace Myeongderia
         private int currentSceneIndex = 0;
         private List<Image> scenes = new List<Image>();
         private PictureBox sceneBox;
+
+        private WindowsMediaPlayer bgmPlayer;
 
         public CutScene()
         {
@@ -21,8 +24,8 @@ namespace Myeongderia
             // 1. 전체 화면을 채우는 PictureBox 생성
             sceneBox = new PictureBox();
             sceneBox.Dock = DockStyle.Fill;
-            sceneBox.SizeMode = PictureBoxSizeMode.StretchImage; // 자동 크기 맞춤!
-            sceneBox.Click += OnSceneClick;
+            sceneBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            sceneBox.Click += (s, e) => AdvanceScene();
             this.Controls.Add(sceneBox);
 
             // 2. 리소스에서 Scene1~Scene14까지 이미지 불러오기
@@ -38,11 +41,11 @@ namespace Myeongderia
                 sceneBox.Image = scenes[0];
 
             // 4. 폼 자체 클릭도 컷신 넘기기로 연결
-            this.Click += OnSceneClick;
+            this.Click += (s, e) => AdvanceScene();
         }
 
-        // 5. 클릭할 때마다 다음 컷신 보여주기
-        private void OnSceneClick(object sender, EventArgs e)
+        // 컷신 넘기기 및 마지막 장면 이후 로직
+        private void AdvanceScene()
         {
             currentSceneIndex++;
 
@@ -52,10 +55,27 @@ namespace Myeongderia
             }
             else
             {
-                this.Hide(); // 컷신 창 숨기기
-                Difficulty difficulty = new Difficulty(); // 난이도 선택 창 띄우기
+                PlayBackgroundMusic(); // 컷신 종료 시 배경음악 시작
+
+                this.Hide();
+                Difficulty difficulty = new Difficulty();
                 difficulty.StartPosition = FormStartPosition.CenterScreen;
                 difficulty.Show();
+            }
+        }
+
+        private void PlayBackgroundMusic()
+        {
+            try
+            {
+                bgmPlayer = new WindowsMediaPlayer();
+                bgmPlayer.URL = "Resources\\BurgerBeat.mp3";
+                bgmPlayer.settings.setMode("loop", true); // 반복 재생 설정
+                bgmPlayer.controls.play();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("배경음악 재생 실패: " + ex.Message);
             }
         }
 
