@@ -11,6 +11,9 @@
   <ItemGroup>
     <None Remove="Resources\Bread.png" />
     <None Remove="Resources\Bread1.png" />
+    <None Remove="Resources\BurgerBeat.mp3" />
+    <None Remove="Resources\ding.wav" />
+    <None Remove="Resources\fail.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +38,18 @@
     <Content Include="Resources\Bread1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\BurgerBeat.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ding.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\fail.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
