@@ -47,10 +47,10 @@
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackgroundImage = Properties.Resources.StartBackground;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(944, 601);
+            ClientSize = new Size(960, 640);
             Controls.Add(startButton);
             Name = "Form1";
             Text = "Form1";
