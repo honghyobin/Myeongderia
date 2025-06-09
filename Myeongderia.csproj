@@ -8,7 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup> 
     <None Remove="Resources\Bread.png" />
     <None Remove="Resources\Bread1.png" />
     <None Remove="Resources\BurgerBeat.mp3" />
